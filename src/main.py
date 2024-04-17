@@ -52,7 +52,7 @@ class MainWindows(QMainWindow):
         open_file.triggered.connect(self.open_file)
 
         open_folder = file_menu.addAction("Open Folder")
-        open_folder.setShortcut("Ctrl+O")
+        open_folder.setShortcut("Ctrl+K")
         open_folder.triggered.connect(self.open_folder)
 
         # edit menu 
@@ -76,8 +76,20 @@ class MainWindows(QMainWindow):
         ''''''
 
     def set_up_body(self):
-        # Add body setup code here
-        pass
+        
+        # Application Body
+        body_frame = QFrame() 
+        body_frame.setFrameShape(QFrame.NoFrame)
+        body_frame.setFrameShadow(QFrame.Plain)
+        body_frame.setLineWidth(0)
+        body_frame.setMidLineWidth(0)
+        body_frame.setContentsMargins(0, 0, 0 , 0)
+        body_frame.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        body = QHBoxLayout()
+        body.setContentsMargins(0, 0, 0 , 0)
+        body.setSpacing(0)
+        body_frame.setLayout(body)
+        
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
