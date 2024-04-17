@@ -104,9 +104,49 @@ class MainWindows(QMainWindow):
         side_bar_layout.setAlignment(Qt.AlignTop | Qt.AlignCenter)
         self.side_bar.setLayout(side_bar_layout)
 
+
         body.addWidget(self.side_bar)
 
-        
+
+        # split view 
+        self.hsplit = QSplitter(Qt.Horizontal)
+
+        # frame and layout to hold tree view (fire manager)
+        self.tree_frame = QFrame()
+        self.tree_frame.setLineWidth(1)
+        self.tree_frame.setMaximumWidth(400)
+        self.tree_frame.setMinimumWidth(200)
+        self.tree_frame.setBaseSize(100, 0)
+        self.tree_frame.setContentsMargins(0, 0, 0 , 0)
+        tree_frame_layout = QVBoxLayout()
+        tree_frame_layout.setContentsMargins(0, 0, 0 , 0)
+        tree_frame_layout.setSpace (0)
+        self.tree_frame.setStyleSheet('''
+
+            QFrame {
+                background-color: #21252b;
+                border-radius: 5px;
+                border: none;
+                padding: 5px;
+                color: #D3D3D3;
+            }
+                                      
+            QFrame:hover {
+                color: white;
+            }
+        ''')
+
+        # File system model to appear in tree view 
+        self.model = QFileSystemModel()
+        self.model.setRootPath(os.getcdw())
+        # File system filters
+        self.model.setFilter(QDir.NoDotAndDotDot | QDir.AllDirs | QDir.Files)
+
+        # Tree View 
+        self.tree_view = QTreeView()
+
+
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
