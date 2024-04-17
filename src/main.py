@@ -31,6 +31,8 @@ class MainWindows(QMainWindow):
         self.set_up_menu()
         self.set_up_body()
 
+        self.side_bar_clr = "#282c34"
+
         self.show()
 
     def get_editor(self) -> QsciScintilla:
@@ -89,6 +91,21 @@ class MainWindows(QMainWindow):
         body.setContentsMargins(0, 0, 0 , 0)
         body.setSpacing(0)
         body_frame.setLayout(body)
+        
+        # Side Bar
+        self.side_bar = QFrame()
+        self.side_bar.setFrameShape(QFrame.Plain)
+        self.side_bar.setFrameShadow(QFrame.Plain)
+        self.side_bar.setStyleSheet('''
+            background-color: {self.side_bar_clr}; 
+        ''')
+        side_bar_layout = QHBoxLayout()
+        side_bar_layout.setContentsMargins(5, 10, 5, 0)
+        side_bar_layout.setAlignment(Qt.AlignTop | Qt.AlignCenter)
+        self.side_bar.setLayout(side_bar_layout)
+
+        body.addWidget(self.side_bar)
+
         
 
 if __name__ == '__main__':
